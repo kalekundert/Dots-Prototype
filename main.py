@@ -12,7 +12,7 @@ world = world.World(messenger)
 game = game.Game(world, messenger)
 
 game.setup()
-world.make_token()
+world.setup()
 
 last_tick = time.time()
 

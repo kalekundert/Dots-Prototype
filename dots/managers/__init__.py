@@ -1,1 +1,1 @@
-__all__ = ["manager"]
+__all__ = ["manager", "gui"]

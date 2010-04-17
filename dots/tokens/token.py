@@ -1,9 +1,14 @@
+import pygame
+from pygame.locals import *
+
 from dots.messaging import Receiver
 
 class Token:
-    def __init__(self, messenger):
-        self.receiver = Receiver(messenger)
-        self.counter = 0
+    def __init__(self, receiver, position):
+        self.receiver = receiver
+
+        self.position = position
+        self.radius = 5
 
     def get_receiver (self):
         return self.receiver
@@ -24,3 +29,10 @@ class Token:
             else:
                 # Bad message type.
                 raise ValueError;
+
+    def draw (self, screen):
+        color = (255, 0, 0)
+        position = self.position.get_int_tuple()
+        radius = self.radius
+
+        pygame.draw.circle(screen, color, position, radius)

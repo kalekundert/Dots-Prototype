@@ -1,4 +1,9 @@
+import messaging
+
 from tokens import *
+from vector import *
+
+from random import uniform
 
 class World:
 
@@ -10,12 +15,18 @@ class World:
         for token in self.tokens:
             yield token
 
-    def update (self, time):
+    def setup(self):
+        for i in range(25):
+            self.make_token();
+
+    def update(self, time):
         for token in self:
             token.update(time)
 
     def make_token(self):
-        new_token = token.Token(self.messenger)
-        self.tokens.append(new_token)
+        new_position = Vector(uniform(0, 500), uniform(0, 500))
+        new_receiver = messaging.Receiver(self.messenger)
+        new_token = token.Token(new_receiver, new_position)
 
+        self.tokens.append(new_token)
         return new_token

@@ -5,8 +5,15 @@ class Game:
         self.world = world
         self.messenger = messenger
 
+        self.managers = []
+
     def setup(self):
-        self.manager = manager.Manager(self.world, self.messenger)
+        gui_manager = gui.GUI(self.world, self.messenger)
+        self.managers.append(gui_manager)
+
+        for manager in self.managers:
+            manager.setup()
 
     def update (self, time):
-        self.manager.update(time)
+        for manager in self.managers:
+            manager.update(time)
