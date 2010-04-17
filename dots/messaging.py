@@ -1,3 +1,6 @@
+# Make Sender and Receiver completely distinct?
+#   => Not in the prototype, but later.
+
 class Messenger:
 
     NEXT_ADDRESS = 0

@@ -19,7 +19,7 @@ class World:
 
     def setup(self):
         tribe = self.make_tribe();
-        for i in range(25):
+        for i in range(1):
             self.make_token(tribe);
 
     def update(self, time):
@@ -38,6 +38,8 @@ class World:
         new_position = Vector(uniform(0, 500), uniform(0, 500))
         new_receiver = messaging.Receiver(self.messenger)
         new_dot = dot.Dot(new_receiver, tribe, new_position)
+
+        new_dot.create()
 
         self.tokens.append(new_dot)
         return new_dot

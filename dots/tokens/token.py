@@ -4,6 +4,9 @@ class Token:
     def __init__(self, receiver):
         self.receiver = receiver
 
-    def get_receiver (self):
-        return self.receiver
+    def update(self, time):
+        pass
+
+    def draw(self, screen):
+        pass
 
