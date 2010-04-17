@@ -8,7 +8,8 @@ class Game:
         self.managers = []
 
     def setup(self):
-        gui_manager = gui.GUI(self.world, self.messenger)
+        tribe = self.world.tribes[0]
+        gui_manager = gui.GUI(self.world, self.messenger, tribe)
         self.managers.append(gui_manager)
 
         for manager in self.managers:

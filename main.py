@@ -9,10 +9,10 @@ from time import clock
 messenger = messaging.Messenger()
 
 world = world.World(messenger)
-game = game.Game(world, messenger)
-
-game.setup()
 world.setup()
+
+game = game.Game(world, messenger)
+game.setup()
 
 last_tick = time.time()
 
