@@ -1,0 +1,26 @@
+Introduction:
+
+This file describes changes that seem good, but that aren't worth
+implementing in the prototype.  The changes are organized by file, so it will
+be easy to find them when I come back to rewrite everything in C++.
+
+messaging.py:
+
+- Make the sender and receiver classes completely distinct.  If a game object
+  wants to be able to send messages, it will contain a Sender object.
+  Likewise, if it wants to receive messages, it will contain a Receiver
+  object.  When messages are sent, they should contain a return address,
+  because you can't send messages directly back to the sender.
+
+- I could also use a factory class to make sender and receiver classes.  That
+  way, the Messenger class wouldn't have to bother with managing address
+  numbers so much.
+
+managers/gui.py:
+
+- The gui class is rather bloated.  It would probably be good to eventually
+  split it up into smaller pieces somehow.  My thoughts right now are to keep
+  the GUI class as an overall director.  There might be a Control class,
+  which could pan the screen and move tokens.  Also, Mouse and Keyboard
+  classes might be helpful.  SelectionBox and ViewBox classes might make
+  sense.  

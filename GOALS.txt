@@ -1,0 +1,17 @@
+Phase 1:
+
+- Pan the screen.
+- Use a key to stop dots from moving
+- Add shift-clicking
+
+Phase 2:
+
+- Steering behaviors
+- Add sandbox players
+- Add the combat manager
+
+The Distant Future:
+
+- Add a map class that splits the world into tiles and keeps track of where
+  the dots are.
+- Networking!

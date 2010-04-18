@@ -19,7 +19,7 @@ class World:
 
     def setup(self):
         tribe = self.make_tribe();
-        for i in range(1):
+        for i in range(15):
             self.make_token(tribe);
 
     def update(self, time):
