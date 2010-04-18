@@ -1,20 +1,22 @@
 Phase 1: Basic Interface:
 
-- Full-screen mode.
-- Use a key to stop dots from moving
-- Add shift-clicking
-- Keep dots on the map
+Complete!
 
 Phase 2: Sandbox Game:
 
-- Steering behaviors
-- Add sandbox players
-- Reproduction
-- Add the combat manager
+- Collision manager
+  - Keep dots on the map
+  - Keep dots off of each other
+
+- Combat manager
+- Reproduction manager
+
+- Sandbox players
+  - Steering behaviors
 
 Phase 3: Networking:
 
-...
+Too far in the future...
 
 Phase 4: Improved Gameplay:
 

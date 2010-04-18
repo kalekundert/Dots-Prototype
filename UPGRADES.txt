@@ -35,3 +35,9 @@ managers/gui.py:
   but screen coordinates would be a distinct class (within GUI) that could
   convert itself to world coordinates.  Of course, this would be more helpful
   in the strongly typed C++ than it would be in Python.
+
+tokens/dot.py:
+
+- Dots decided that they have arrived at a point when that point comes within
+  their radius.  This isn't great logic, but it was simple and I'm not sure
+  how to do better.
