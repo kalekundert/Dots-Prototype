@@ -24,3 +24,14 @@ managers/gui.py:
   which could pan the screen and move tokens.  Also, Mouse and Keyboard
   classes might be helpful.  SelectionBox and ViewBox classes might make
   sense.  
+
+- There's no immediately obvious way to keep from scrolling off the map.
+  This is something I'll want to think about when I do the C++ version.
+
+- The distinction between world and screen coordinates is very sloppy and
+  error-prone, as is.  For the C++ version, I'll want to handle this problem
+  in a more elegant way.  Perhaps I could make screen and world coordinates
+  different types of objects.  Maybe world coordinates would just be vectors,
+  but screen coordinates would be a distinct class (within GUI) that could
+  convert itself to world coordinates.  Of course, this would be more helpful
+  in the strongly typed C++ than it would be in Python.

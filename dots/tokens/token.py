@@ -7,6 +7,6 @@ class Token:
     def update(self, time):
         pass
 
-    def draw(self, screen):
+    def draw(self, screen, offset):
         pass
 

@@ -1,17 +1,23 @@
-Phase 1:
+Phase 1: Basic Interface:
 
-- Pan the screen.
+- Full-screen mode.
 - Use a key to stop dots from moving
 - Add shift-clicking
+- Keep dots on the map
 
-Phase 2:
+Phase 2: Sandbox Game:
 
 - Steering behaviors
 - Add sandbox players
+- Reproduction
 - Add the combat manager
 
-The Distant Future:
+Phase 3: Networking:
 
-- Add a map class that splits the world into tiles and keeps track of where
-  the dots are.
-- Networking!
+...
+
+Phase 4: Improved Gameplay:
+
+- Pathfinding
+- Maps with obstacles
+- Fog of war
