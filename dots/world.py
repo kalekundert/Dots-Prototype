@@ -25,10 +25,13 @@ class World:
         map = self.make_map()
 
         red = self.make_tribe((255, 0, 0), 250, 250)
-        blue = self.make_tribe((0, 0, 255), 750, 750)
+        blue = self.make_tribe((0, 0, 255), 250, 250)
+        #blue = self.make_tribe((0, 0, 255), 750, 750)
+
+        for i in range(10):
+            self.make_token(red)
 
         for i in range(1):
-            self.make_token(red)
             self.make_token(blue)
 
     def update(self, time):
@@ -45,6 +48,15 @@ class World:
                 dot = message["dot"]
                 tribe = dot.tribe
                 self.make_token(tribe)
+
+            elif message["type"] == "kill-player":
+                tribe = message["tribe"]
+                # I need to do this check because the kill messages are
+                # being sent out once for each dot that was attacking the
+                # ex-dot.  The combat manager could be smarter about that.
+                if tribe in self.tribes:
+                    self.tribes.remove(tribe)
+                    self.tokens.remove(tribe)
 
             else:
                 raise ValueError("Bad message type: '%(type)s'" % message)

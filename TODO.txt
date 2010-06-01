@@ -1,0 +1,2 @@
+Fix the combat and collision managers to send messages rather than directly
+fiddling with the dot objects.

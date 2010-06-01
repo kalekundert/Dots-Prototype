@@ -22,6 +22,9 @@ class Game:
         self.growth_manager = growth.Growth(self, self.world, self.messenger)
         self.managers.append(self.growth_manager)
 
+        self.victory_manager = victory.Victory(self, self.world, self.messenger)
+        self.managers.append(self.victory_manager)
+
         for manager in self.managers:
             manager.setup()
 

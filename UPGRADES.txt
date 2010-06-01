@@ -16,6 +16,12 @@ messaging.py:
   way, the Messenger class wouldn't have to bother with managing address
   numbers so much.
 
+- Sometimes (the victory manager is one example) one message is sent in
+  response to another.  I think it's be best if these kinds of conversations
+  didn't take more than one frame to complete.  This will mean checking
+  messages in a while loop (rather than a for loop) and making the messenger
+  a little smarter.
+
 managers/gui.py:
 
 - The gui class is rather bloated.  It would probably be good to eventually
@@ -47,3 +53,10 @@ tokens/dot.py:
 - Dots decided that they have arrived at a point when that point comes within
   their radius.  This isn't great logic, but it was simple and I'm not sure
   how to do better.
+
+managers/victory.py:
+
+- When the victory manager sends out messages saying that a tribe has been
+  killed off, the GUI and AI managers should be listening.  The GUI should
+  stop letting the player click on things, and the AI should stop thinking
+  about things.  

@@ -17,7 +17,7 @@ try:
 
     last_tick = time.time()
 
-    while True:
+    while game.victory_manager.keep_playing:
         this_tick = time.time()
         time_diff = 1000 * (this_tick - last_tick)
 

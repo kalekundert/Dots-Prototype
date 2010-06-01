@@ -1,0 +1,8 @@
+Right now, some of my managers are only communicated with the tokens via
+messages, while others are just directly modifying them.  What's the best
+approach?
+
+I don't care to much for the prototype, but I expect this decision to come
+back into play once I get to the network code.  When everything goes
+through the messenger, it might be easier to decide when updates have to
+happen, both on the client and server sides.
