@@ -6,9 +6,9 @@ from vector import *
 from random import uniform
 
 class World:
-
     def __init__(self, messenger):
         self.messenger = messenger
+        self.receiver = messaging.Receiver(messenger)
 
         self.map = None
 
@@ -23,12 +23,25 @@ class World:
 
     def setup(self):
         map = self.make_map()
-        tribe = self.make_tribe()
+
+        red = self.make_tribe((255, 0, 0), 250, 250)
+        blue = self.make_tribe((0, 0, 255), 750, 750)
 
         for i in range(15):
-            self.make_token(tribe)
+            self.make_token(red)
+            self.make_token(blue)
 
     def update(self, time):
+        messages = self.receiver.dump_messages()
+        for message in messages:
+            if message["type"] == "kill":
+                dot = message["dot"]
+                if dot in self.dots:
+                    self.dots.remove(dot)
+                    self.tokens.remove(dot)
+            else:
+                raise ValueError("Bad message type: '%(type)s'" % message)
+
         for token in self:
             token.update(time)
 
@@ -41,18 +54,19 @@ class World:
 
         return new_map
 
-    def make_tribe(self):
+    def make_tribe(self, color, x, y):
         new_receiver = messaging.Receiver(self.messenger)
-        new_tribe = tribe.Tribe(new_receiver)
+        new_tribe = tribe.Tribe(new_receiver, color, x, y)
 
         self.tribes.append(new_tribe)
         self.tokens.append(new_tribe)
 
         return new_tribe
 
-
     def make_token(self, tribe):
-        new_position = Vector(uniform(0, 500), uniform(0, 500))
+        new_position = Vector(uniform(-250, 250), uniform(-250, 250))
+        new_position += tribe.position
+
         new_receiver = messaging.Receiver(self.messenger)
         new_dot = dot.Dot(new_receiver, tribe, new_position)
 

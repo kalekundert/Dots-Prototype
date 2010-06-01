@@ -4,15 +4,11 @@ Complete!
 
 Phase 2: Sandbox Game:
 
-- Collision manager
-  - Keep dots on the map
-  - Keep dots off of each other
-
-- Combat manager
-- Reproduction manager
+- Growth manager
 
 - Sandbox players
   - Steering behaviors
+  - Victory conditions
 
 Phase 3: Networking:
 
@@ -23,3 +19,5 @@ Phase 4: Improved Gameplay:
 - Pathfinding
 - Maps with obstacles
 - Fog of war
+- Mini-map
+- GUI & Status Bars

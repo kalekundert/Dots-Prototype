@@ -9,9 +9,9 @@ class Manager:
     #  -Network
     #   etc.
 
-    def __init__(self, world, messenger):
+    def __init__(self, game, world, messenger):
         self.world = world
-        self.timer = 0;
+        self.game = game
 
         self.sender = Sender (messenger);
         self.receiver = self.sender
@@ -22,19 +22,10 @@ class Manager:
 
         sender.send_message(receiver, message)
 
-    def setup():
-        pass
+    def new_message(self, type, **values):
+        values["type"] = type
+        return values
 
-    def update(self, time):
-        self.timer += time;
+    def setup(self): pass
 
-        if self.timer < 1000:
-            return
-
-        for token in self.world:
-            self.send_message(token, "hello")
-
-        self.timer = 0
-
-
-
+    def update(self, time): pass

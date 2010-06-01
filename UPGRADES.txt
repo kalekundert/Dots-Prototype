@@ -36,6 +36,12 @@ managers/gui.py:
   convert itself to world coordinates.  Of course, this would be more helpful
   in the strongly typed C++ than it would be in Python.
 
+- The gui class currently keeps track of which dots are selected.  This makes 
+  sense, because only dots controlled by the human player can be selected.  
+  However, when a dot is killed, it needs to be removed from the gui's list of
+  selected dots.  In order to do this, the gui will have to listen for kill
+  messages relating to dots it knows about.  
+
 tokens/dot.py:
 
 - Dots decided that they have arrived at a point when that point comes within
