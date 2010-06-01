@@ -27,18 +27,25 @@ class World:
         red = self.make_tribe((255, 0, 0), 250, 250)
         blue = self.make_tribe((0, 0, 255), 750, 750)
 
-        for i in range(15):
+        for i in range(1):
             self.make_token(red)
             self.make_token(blue)
 
     def update(self, time):
         messages = self.receiver.dump_messages()
         for message in messages:
+
             if message["type"] == "kill":
                 dot = message["dot"]
                 if dot in self.dots:
                     self.dots.remove(dot)
                     self.tokens.remove(dot)
+
+            elif message["type"] == "create":
+                dot = message["dot"]
+                tribe = dot.tribe
+                self.make_token(tribe)
+
             else:
                 raise ValueError("Bad message type: '%(type)s'" % message)
 

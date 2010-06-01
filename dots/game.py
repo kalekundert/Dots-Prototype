@@ -19,6 +19,9 @@ class Game:
         self.combat_manager = combat.Combat(self, self.world, self.messenger)
         self.managers.append(self.combat_manager)
 
+        self.growth_manager = growth.Growth(self, self.world, self.messenger)
+        self.managers.append(self.growth_manager)
+
         for manager in self.managers:
             manager.setup()
 

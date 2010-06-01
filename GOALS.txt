@@ -4,8 +4,6 @@ Complete!
 
 Phase 2: Sandbox Game:
 
-- Growth manager
-
 - Sandbox players
   - Steering behaviors
   - Victory conditions
