@@ -8,10 +8,14 @@ class Game:
         self.managers = []
 
     def setup(self):
-        tribe = self.world.tribes[0]
+        red = self.world.tribes[0]
+        blue = self.world.tribes[1]
 
-        self.gui_manager = gui.GUI(self, self.world, self.messenger, tribe)
+        self.gui_manager = gui.GUI(self, self.world, self.messenger, red)
         self.managers.append(self.gui_manager)
+
+        self.ai_manager = ai.AI(self, self.world, self.messenger, blue)
+        self.managers.append(self.ai_manager)
 
         self.collision_manager = collisions.Collisions(self, self.world, self.messenger)
         self.managers.append(self.collision_manager)

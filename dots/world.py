@@ -8,7 +8,9 @@ from random import uniform
 class World:
     def __init__(self, messenger):
         self.messenger = messenger
+
         self.receiver = messaging.Receiver(messenger)
+        self.sender = messaging.Sender(messenger)
 
         self.map = None
 
@@ -25,13 +27,13 @@ class World:
         map = self.make_map()
 
         red = self.make_tribe((255, 0, 0), 250, 250)
-        blue = self.make_tribe((0, 0, 255), 250, 250)
-        #blue = self.make_tribe((0, 0, 255), 750, 750)
+        #blue = self.make_tribe((0, 0, 255), 250, 250)
+        blue = self.make_tribe((0, 0, 255), 750, 750)
 
         for i in range(10):
             self.make_token(red)
 
-        for i in range(1):
+        for i in range(10):
             self.make_token(blue)
 
     def update(self, time):
@@ -45,9 +47,11 @@ class World:
                     self.tokens.remove(dot)
 
             elif message["type"] == "create":
-                dot = message["dot"]
-                tribe = dot.tribe
-                self.make_token(tribe)
+                old_dot = message["dot"]
+                tribe = old_dot.tribe
+                new_dot = self.make_token(tribe)
+
+                new_dot.wander = old_dot.wander
 
             elif message["type"] == "kill-player":
                 tribe = message["tribe"]
@@ -82,14 +86,14 @@ class World:
 
         return new_tribe
 
-    def make_token(self, tribe):
+    def make_token(self, tribe, old_dot=None):
         new_position = Vector(uniform(-250, 250), uniform(-250, 250))
         new_position += tribe.position
 
         new_receiver = messaging.Receiver(self.messenger)
         new_dot = dot.Dot(new_receiver, tribe, new_position)
 
-        new_dot.create()
+        new_dot.create(old_dot)
 
         self.dots.append(new_dot)
         self.tokens.append(new_dot)

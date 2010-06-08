@@ -4,16 +4,49 @@ from pygame import *
 from vector import *
 from token import Token
 
+from debug import *
+
 from dots.constants import *
 
 class Dot(Token):
-    FISRT = True
+
+    FIRST = True
+
+    class WanderSteering:
+        def __init__(self, dot, distance=20, radius=10, jitter=3):
+            self.dot = dot
+
+            self.distance = distance
+            self.radius = radius
+            self.jitter = jitter
+
+            self.target = radius * Vector.get_random()
+
+        def force(self):
+            dx = random.uniform(-1, 1) * self.jitter
+            dy = random.uniform(-1, 1) * self.jitter
+
+            self.target += Vector(dx, dy)
+            self.target = self.target.get_normal()
+            self.target *= self.radius
+
+            heading = self.dot.velocity.get_normal()
+            velocity = self.target + self.distance * heading
+
+            return velocity.get_normal(self.dot.speed)
+
     def __init__(self, receiver, tribe, position):
         Token.__init__(self, receiver)
         self.tribe = tribe
 
-        self.first = Dot.FISRT
-        Dot.FISRT = False
+        self.debug = False
+        self.first = Dot.FIRST
+        Dot.FIRST = False
+
+        self.wander = False
+        self.wander_steering = Dot.WanderSteering(self, distance=20,
+                                                        radius=10,
+                                                        jitter=1)
 
         self.position = position
         self.velocity = ZeroVector()
@@ -31,7 +64,9 @@ class Dot(Token):
     def __eq__(self, other):
         return self is other
 
-    def create(self):
+    def create(self, old_dot):
+        if old_dot is not None:
+            self.wander = old_dot.wander
         self.tribe.add_dot(self)
 
     def update (self, time):
@@ -40,6 +75,10 @@ class Dot(Token):
 
             if message["type"] == "move":
                 self.targets = [message["position"]]
+
+            elif message["type"] == "wander":
+                self.wander = True
+                debug("self.wander = %s" % self.wander)
 
             elif message["type"] == "waypoint":
                 position = message["position"]
@@ -76,6 +115,9 @@ class Dot(Token):
 
         except IndexError:
             pass
+
+        if self.wander:
+            self.velocity = self.wander_steering.force()
 
         self.position += self.velocity * (time / 1000)
 

@@ -27,13 +27,13 @@ class Growth(Manager):
             rate = 1 / (crowding_dots + 1)
             growth = dot.growth + rate * (time / 1000)
 
-
             if growth > GROWTH_RATE:
                 restart_message = self.new_message("growth", growth=0)
                 create_message = self.new_message("create", dot=dot)
 
                 self.send_message(dot, restart_message)
                 self.send_message(self.world, create_message)
+                self.send_message(self.game.ai_manager, create_message)
 
             else:
                 growth_message = self.new_message("growth", growth=growth)
