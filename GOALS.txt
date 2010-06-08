@@ -4,9 +4,7 @@ Complete!
 
 Phase 2: Sandbox Game:
 
-- Sandbox players
-  - Steering behaviors
-  - Victory conditions
+Complete!
 
 Phase 3: Networking:
 
@@ -19,3 +17,4 @@ Phase 4: Improved Gameplay:
 - Fog of war
 - Mini-map
 - GUI & Status Bars
+- Distance manager

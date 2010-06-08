@@ -4,6 +4,13 @@ This file describes changes that seem good, but that aren't worth
 implementing in the prototype.  The changes are organized by file, so it will
 be easy to find them when I come back to rewrite everything in C++.
 
+Miscellaneous:
+
+- Because so many managers need to calculate the distance between a dot and
+  it's neighbors, it might be nice to have a distance manager that does all
+  the necessary calculations once ans sends the results to the rest of the
+  program.  I haven't actually done this yet.
+
 messaging.py:
 
 - Make the sender and receiver classes completely distinct.  If a game object
@@ -48,15 +55,26 @@ managers/gui.py:
   selected dots.  In order to do this, the gui will have to listen for kill
   messages relating to dots it knows about.  
 
-tokens/dot.py:
-
-- Dots decided that they have arrived at a point when that point comes within
-  their radius.  This isn't great logic, but it was simple and I'm not sure
-  how to do better.
-
 managers/victory.py:
 
 - When the victory manager sends out messages saying that a tribe has been
   killed off, the GUI and AI managers should be listening.  The GUI should
   stop letting the player click on things, and the AI should stop thinking
   about things.  
+
+- This should probably be called the defeat manager, because it only checks
+  to see when players have died.  
+
+tokens/dot.py:
+
+- Dots decided that they have arrived at a point when that point comes within
+  their radius.  This isn't great logic, but it was simple and I'm not sure
+  how to do better.
+
+tokens/tribe.py:
+
+- I should put more thought into how tribes are created.  Right now, they
+  just take a color and a position.  There's nothing specifically wrong with
+  this, but it doesn't seem very flexible.  I'm writing this note to make
+  sure that I give the design some more thought before I write the C++
+  version.
